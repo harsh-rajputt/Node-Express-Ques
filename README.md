@@ -10,14 +10,20 @@
 4. [Express.js Basics](#expressjs-basics)
 5. [Express.js Intermediate](#expressjs-intermediate)
 6. [Express.js Advanced](#expressjs-advanced)
-7. [Practical Coding Questions](#practical-coding-questions)
-8. [Best Practices](#best-practices)
+7. [Testing in Node.js](#testing-in-nodejs)
+8. [Security in Node.js & Express](#security-in-nodejs--express)
+9. [Practical Coding Questions](#practical-coding-questions)
+10. [Best Practices](#best-practices)
 
 ---
 
 # Node.js Basics
 
 ## 1. What is Node.js?
+
+**Hindi:** Node.js ek runtime environment hai jo JavaScript ko browser ke bahar (server-side) run karne ki anumati deta hai. Yeh Chrome ke V8 engine par bana hai.
+
+**English:** Node.js is a runtime environment that allows executing JavaScript outside the browser (server-side). It is built on Chrome's V8 engine.
 
 **Answer:**
 Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. It allows you to run JavaScript on the server side.
@@ -47,6 +53,10 @@ server.listen(3000, () => {
 ---
 
 ## 2. What is NPM?
+
+**Hindi:** NPM (Node Package Manager) Node.js ke liye default package manager hai. Yeh packages ko install, manage aur share karne mein madad karta hai.
+
+**English:** NPM (Node Package Manager) is the default package manager for Node.js. It helps to install, manage, and share packages.
 
 **Answer:**
 NPM (Node Package Manager) is the default package manager for Node.js. It helps install, manage, and share packages.
@@ -84,6 +94,10 @@ npm list                # List installed packages
 ---
 
 ## 3. What is the Event Loop in Node.js?
+
+**Hindi:** Event Loop wo mechanism hai jo Node.js ko non-blocking I/O operations perform karne deta hai, bawajood iske ki JavaScript single-threaded hai.
+
+**English:** The Event Loop is the mechanism that allows Node.js to perform non-blocking I/O operations, despite JavaScript being single-threaded.
 
 **Answer:**
 The Event Loop is what allows Node.js to perform non-blocking I/O operations despite JavaScript being single-threaded.
@@ -126,6 +140,10 @@ console.log('5 - End');
 
 ## 4. What is the difference between `require()` and `import`?
 
+**Hindi:** `require()` CommonJS module system ka hissa hai jo synchronous loading karta hai, jabki `import` ES6 module system hai jo asynchronous loading support karta hai.
+
+**English:** `require()` is part of the CommonJS module system used for synchronous loading, whereas `import` is from ES6 modules and supports asynchronous loading.
+
 **Answer:**
 
 **CommonJS (require):**
@@ -166,6 +184,10 @@ const module = await import('./module.js');
 ---
 
 ## 5. What are Callbacks in Node.js?
+
+**Hindi:** Callback ek function hai jo kisi dusre function ko argument ke roop mein pass kiya jata hai aur kisi operation ke complete hone par execute hota hai.
+
+**English:** A callback is a function passed as an argument to another function, which is executed after an operation completes.
 
 **Answer:**
 A callback is a function passed as an argument to another function, executed after an operation completes.
@@ -214,6 +236,10 @@ getData(function(a) {
 ---
 
 ## 6. What are Promises?
+
+**Hindi:** Promises wo objects hain jo kisi asynchronous operation ke future mein complete ya fail hone ko represent karte hain.
+
+**English:** Promises are objects representing the eventual completion or failure of an asynchronous operation.
 
 **Answer:**
 Promises are objects representing the eventual completion or failure of an asynchronous operation.
@@ -283,6 +309,10 @@ fetchUser()
 
 ## 7. What is Async/Await?
 
+**Hindi:** Async/await Promises ke upar syntactic sugar hai, jo asynchronous code ko synchronous code ki tarah dikhne aur behave karne mein madad karta hai.
+
+**English:** Async/await is syntactic sugar built on top of Promises, making asynchronous code look and behave like synchronous code.
+
 **Answer:**
 Async/await is syntactic sugar over Promises, making asynchronous code look synchronous.
 
@@ -339,6 +369,10 @@ async function safeOperation() {
 ---
 
 ## 8. What are Modules in Node.js?
+
+**Hindi:** Modules reuse hone wale code ke blocks hote hain jinhe dusri files mein import aur use kiya ja sakta hai.
+
+**English:** Modules are reusable blocks of code that can be imported and used in other files.
 
 **Answer:**
 Modules are reusable blocks of code that can be imported and used in other files.
@@ -434,6 +468,10 @@ exports.user = { name: 'John' };  // ✅ Correct
 
 ## 10. What is the `global` object?
 
+**Hindi:** `global` object Node.js mein wahi hai jo browser mein `window` object hota hai. Isme define kiye gaye variables har jagah accessible hote hain.
+
+**English:** The `global` object in Node.js is similar to the `window` object in browsers. Variables defined in it are accessible everywhere.
+
 **Answer:**
 The global object in Node.js is similar to `window` in browsers. Variables and functions defined globally are accessible everywhere.
 
@@ -468,6 +506,10 @@ module.exports = {
 
 ## 11. What is the `Buffer` class?
 
+**Hindi:** Buffer class ka use Node.js mein binary data ko handle karne ke liye kiya jata hai.
+
+**English:** The Buffer class is used to handle binary data in Node.js.
+
 **Answer:**
 Buffer is used to handle binary data in Node.js. It's a global class.
 
@@ -500,6 +542,10 @@ const backToString = jsonBuffer.toString();
 ---
 
 ## 12. What are Streams in Node.js?
+
+**Hindi:** Streams data ki wo collections hain jo shayad ek baar mein puri tarah available na ho. Inka use data ko chunks (tukdon) mein read/write karne ke liye hota hai.
+
+**English:** Streams are collections of data that might not be available all at once. They are used for reading/writing data in chunks.
 
 **Answer:**
 Streams are collections of data that might not be available all at once. Used for reading/writing data in chunks.
@@ -554,6 +600,10 @@ fs.createReadStream('input.txt')
 
 ## 13. What is Middleware in Node.js?
 
+**Hindi:** Middleware wo functions hote hain jinke paas request aur response objects ka access hota hai aur wo unhe modify kar sakte hain.
+
+**English:** Middleware are functions that have access to request and response objects and can modify them.
+
 **Answer:**
 Middleware functions have access to request and response objects and can modify them or end the request-response cycle.
 
@@ -592,6 +642,10 @@ app.use(errorHandler);
 ---
 
 ## 14. What is `process.nextTick()` vs `setImmediate()`?
+
+**Hindi:** `process.nextTick()` event loop ke agle phase se pehle turant chalta hai, jabki `setImmediate()` I/O operations ke baad check phase mein chalta hai.
+
+**English:** `process.nextTick()` runs immediately before the next event loop phase, while `setImmediate()` runs in the check phase after I/O operations.
 
 **Answer:**
 
@@ -652,6 +706,10 @@ function compute(data, callback) {
 ---
 
 ## 15. How to handle errors in Node.js?
+
+**Hindi:** Errors ko handle karne ke liye hum synchronous code mein try-catch, callbacks mein error-first pattern, aur promises mein `.catch()` ka use karte hain.
+
+**English:** To handle errors, we use try-catch for synchronous code, error-first pattern for callbacks, and `.catch()` for promises.
 
 **Answer:**
 
@@ -714,6 +772,10 @@ process.on('unhandledRejection', (reason, promise) => {
 
 ## 16. What is Clustering in Node.js?
 
+**Hindi:** Clustering humein multiple child processes (workers) banane ki suvidha deta hai jo same server port share karte hain, taaki multi-core systems ka pura fayda uthaya ja sake.
+
+**English:** Clustering allows creating child processes (workers) that share the same server port to utilize multi-core systems efficiently.
+
 **Answer:**
 Clustering allows you to create child processes (workers) that share the same server port, utilizing multiple CPU cores.
 
@@ -749,6 +811,10 @@ if (cluster.isMaster) {
 ---
 
 ## 17. What is the Event Emitter?
+
+**Hindi:** EventEmitter wo class hai jo Node.js mein objects ke beech communication ko aasan banati hai. Yeh Node ke event-driven architecture ki neenv hai.
+
+**English:** EventEmitter is a class that facilitates communication between objects in Node.js. It is the foundation of Node's event-driven architecture.
 
 **Answer:**
 EventEmitter is a class that facilitates communication between objects in Node.js. It's the foundation of Node's event-driven architecture.
@@ -805,6 +871,10 @@ myEmitter.removeListener('test', handler);
 
 ## 18. What is `process.env`?
 
+**Hindi:** `process.env` ek object hai jisme environment variables (jaise API keys, DB passwords) store kiye jate hain.
+
+**English:** `process.env` is an object containing environment variables (like API keys, DB passwords).
+
 **Answer:**
 `process.env` is an object containing environment variables.
 
@@ -844,6 +914,10 @@ process.env.MY_VAR = 'value';
 ---
 
 ## 19. What is the Child Process module?
+
+**Hindi:** Child Process module humein naye processes spawn (create) karne ki suvidha deta hai taaki hum system commands run kar sakein.
+
+**English:** The child_process module allows spawning (creating) new processes to run system commands.
 
 **Answer:**
 The child_process module allows you to spawn child processes.
@@ -902,6 +976,10 @@ process.on('message', (msg) => {
 
 ## 20. What is the difference between `readFile` and `createReadStream`?
 
+**Hindi:** `readFile` poori file ko memory mein load karta hai (chhote files ke liye theek hai), jabki `createReadStream` file ko chunks mein padhta hai (bade files ke liye behtar hai).
+
+**English:** `readFile` loads the whole file into memory (good for small files), whereas `createReadStream` reads the file in chunks (better for large files).
+
 **Answer:**
 
 **readFile:**
@@ -950,6 +1028,10 @@ stream.on('end', () => {
 
 ## 21. What is Express.js?
 
+**Hindi:** Express.js Node.js ke liye ek minimal web application framework hai jo web aur mobile apps banane ke features deta hai.
+
+**English:** Express.js is a minimal web application framework for Node.js providing features for web and mobile applications.
+
 **Answer:**
 Express.js is a minimal and flexible Node.js web application framework providing features for web and mobile applications.
 
@@ -994,6 +1076,10 @@ app.listen(3000, () => {
 ---
 
 ## 22. What is Routing in Express?
+
+**Hindi:** Routing ka matlab hai ki aapka application client ki requests (URL endpoints) ka jawab kaise deta hai.
+
+**English:** Routing refers to how an application responds to client requests to particular endpoints.
 
 **Answer:**
 Routing refers to how an application responds to client requests to particular endpoints.
@@ -1048,6 +1134,10 @@ app.get(/.*fly$/, (req, res) => {
 ---
 
 ## 23. What is Middleware in Express?
+
+**Hindi:** Express mein Middleware wo functions hain jo request-response cycle ke dauran execute hote hain.
+
+**English:** In Express, Middleware functions are those that execute during the request-response cycle.
 
 **Answer:**
 Middleware functions execute during the request-response cycle and have access to `req`, `res`, and `next`.
@@ -1109,6 +1199,10 @@ app.get('/user/:id',
 ---
 
 ## 24. What is `req` and `res` in Express?
+
+**Hindi:** `req` object client ki request details (headers, params, body) rakhta hai, aur `res` object server ka response bhejta hai.
+
+**English:** The `req` object holds client request details (headers, params, body), and the `res` object sends the server response.
 
 **Answer:**
 
@@ -1192,6 +1286,10 @@ app.get('/api/data', (req, res) => {
 
 ## 25. How to handle POST requests in Express?
 
+**Hindi:** POST requests aksar data bhejne ke liye use hoti hain. Express mein `req.body` access karne ke liye `express.json()` middleware zaroori hai.
+
+**English:** POST requests are often used to send data. In Express, `express.json()` middleware is required to access `req.body`.
+
 **Answer:**
 ```javascript
 const express = require('express');
@@ -1256,6 +1354,10 @@ app.post('/upload', upload.single('file'), (req, res) => {
 # Express.js Intermediate
 
 ## 26. How to implement authentication in Express?
+
+**Hindi:** Authentication ke liye hum JWT (JSON Web Tokens) ka use karte hain taaki user verify ho sake, aur bcrypt ka use passwords ko encrypt karne ke liye karte hain.
+
+**English:** For authentication, we use JWT (JSON Web Tokens) to verify users and bcrypt to encrypt passwords.
 
 **Answer:**
 ```javascript
@@ -1341,6 +1443,10 @@ app.get('/profile', authenticate, (req, res) => {
 ---
 
 ## 27. How to implement file upload in Express?
+
+**Hindi:** File upload ke liye `multer` library standard hai. Yeh multipart/form-data ko handle karti hai aur files ko disk ya memory mein save karti hai.
+
+**English:** The `multer` library is the standard for file uploads. It handles multipart/form-data and saves files to disk or memory.
 
 **Answer:**
 ```javascript
@@ -1433,6 +1539,10 @@ app.use((err, req, res, next) => {
 
 ## 28. How to implement validation in Express?
 
+**Hindi:** Input validation ke liye `express-validator` library sabse common hai. Yeh check karti hai ki email sahi format mein hai ya password strong hai.
+
+**English:** The `express-validator` library is most common for input validation. It checks if emails are valid or passwords are strong.
+
 **Answer:**
 ```javascript
 const { body, validationResult, param, query } = require('express-validator');
@@ -1518,6 +1628,10 @@ app.post('/follow/:userId',
 
 ## 29. How to implement CORS in Express?
 
+**Hindi:** CORS (Cross-Origin Resource Sharing) browser security feature hai. `cors` package ka use karke hum specify karte hain ki kaunse domains hamare API ko access kar sakte hain.
+
+**English:** CORS (Cross-Origin Resource Sharing) is a browser security feature. Using the `cors` package, we specify which domains can access our API.
+
 **Answer:**
 ```javascript
 const express = require('express');
@@ -1587,6 +1701,10 @@ app.get('/private-api',
 ---
 
 ## 30. How to implement rate limiting in Express?
+
+**Hindi:** Rate limiting ka use karke hum ek IP address se aane wali requests ki limit set karte hain taaki server overload ya hack na ho.
+
+**English:** Using rate limiting, we set a limit on requests from a single IP address to prevent server overload or hacking.
 
 **Answer:**
 ```javascript
@@ -1666,6 +1784,10 @@ const apiLimiter = rateLimit({
 # Node.js Advanced
 
 ## 31. How does Node.js handle concurrency?
+
+**Hindi:** Node.js concurrency ko event-driven, non-blocking I/O model ke through handle karta hai.
+
+**English:** Node.js handles concurrency using an event-driven, non-blocking I/O model.
 
 **Answer:**
 Node.js uses an event-driven, non-blocking I/O model with a single-threaded event loop.
@@ -1750,6 +1872,10 @@ const results = await Promise.all([
 
 ## 32. What are Worker Threads?
 
+**Hindi:** Worker Threads humein JavaScript ko parallel mein run karne ki suvidha dete hain, jo CPU-intensive tasks ke liye upyogi hai.
+
+**English:** Worker Threads allow running JavaScript in parallel, which is useful for CPU-intensive tasks.
+
 **Answer:**
 Worker threads allow running JavaScript in parallel, useful for CPU-intensive operations.
 
@@ -1823,6 +1949,10 @@ worker2.on('message', (result) => {
 ---
 
 ## 33. How to implement caching in Node.js?
+
+**Hindi:** Caching ke liye Redis ka use hota hai. Hum data ko pehle cache (Redis) mein check karte hain, agar wahan mile toh turant return karte hain, warna database se laate hain.
+
+**English:** Redis is used for caching. We first check the cache (Redis) for data; if found, we return it immediately, otherwise we fetch it from the database.
 
 **Answer:**
 ```javascript
@@ -1949,6 +2079,10 @@ app.get('/api/data', cacheMiddleware(300), async (req, res) => {
 ---
 
 ## 34. How to implement WebSockets in Node.js?
+
+**Hindi:** Real-time chat ya updates ke liye WebSockets ka use hota hai. `ws` library ya `socket.io` ek persistent connection maintain karte hain client aur server ke beech.
+
+**English:** WebSockets are used for real-time chat or updates. The `ws` library or `socket.io` maintains a persistent connection between client and server.
 
 **Answer:**
 ```javascript
@@ -2087,6 +2221,10 @@ server.listen(3000, () => {
 ---
 
 ## 35. How to implement pagination in Express?
+
+**Hindi:** Agar data bahut zyada ho, toh hum उसे pages mein todte hain (Pagination). MongoDB mein hum `.skip()` aur `.limit()` query methods ka use karte hain.
+
+**English:** If there is a lot of data, we break it into pages (Pagination). In MongoDB, we use `.skip()` and `.limit()` query methods.
 
 **Answer:**
 ```javascript
@@ -2231,9 +2369,184 @@ app.get('/api/products', async (req, res) => {
 
 ---
 
+# Testing in Node.js
+
+## 36. How to test Node.js applications?
+
+**Hindi:** Node.js applications ko test karne ke liye Jest, Mocha, aur Chai jaise frameworks ka use hota hai.
+
+**English:** Frameworks like Jest, Mocha, and Chai are used to test Node.js applications.
+
+**Answer:**
+Testing ensures your code works as expected. Common testing frameworks include Jest, Mocha, and Chai.
+
+**Types of Tests:**
+1. **Unit Testing**: Testing individual functions/components
+2. **Integration Testing**: Testing how modules work together (e.g., API endpoints)
+3. **End-to-End (E2E) Testing**: Testing the full application flow
+
+**Example using Jest:**
+```javascript
+// math.js
+function sum(a, b) {
+    return a + b;
+}
+module.exports = sum;
+
+// math.test.js
+const sum = require('./math');
+
+test('adds 1 + 2 to equal 3', () => {
+    expect(sum(1, 2)).toBe(3);
+});
+```
+
+**Run test:**
+```bash
+npm install --save-dev jest
+npm test
+```
+
+---
+
+## 37. How to test Express routes (Integration Testing)?
+
+**Hindi:** Express routes ko bina server chalaye test karne ke liye `supertest` library ka use hota hai. 
+
+**English:** The `supertest` library is used to test Express routes without running the server.
+
+**Answer:**
+Use `supertest` to test HTTP endpoints without running the server.
+
+**Example:**
+```javascript
+const request = require('supertest');
+const express = require('express');
+const app = express();
+
+app.get('/user', (req, res) => {
+    res.status(200).json({ name: 'john' });
+});
+
+describe('GET /user', () => {
+    it('responds with json', async () => {
+        const response = await request(app)
+            .get('/user')
+            .expect('Content-Type', /json/)
+            .expect(200);
+            
+        expect(response.body.name).toEqual('john');
+    });
+});
+```
+
+---
+
+## 38. What is Mocking in testing?
+
+**Hindi:** Mocking ka matlab hai testing ke dauran real implementation (jaise database calls) ko fake versions se replace karna.
+
+**English:** Mocking means replacing real implementations (like database calls) with fake versions during testing.
+
+**Answer:**
+Mocking allows you to replace real implementations (like database calls or external APIs) with fake versions to test code in isolation.
+
+**Example:**
+```javascript
+const axios = require('axios');
+const { fetchUsers } = require('./users');
+
+jest.mock('axios');
+
+test('should fetch users', async () => {
+    const users = [{name: 'Bob'}];
+    axios.get.mockResolvedValue({ data: users });
+
+    const result = await fetchUsers();
+    expect(result).toEqual(users);
+});
+```
+
+---
+
+# Security in Node.js & Express
+
+## 39. How to secure a Node.js application?
+
+**Hindi:** Node.js app ko secure karne ke liye HTTPS, Helmet (headers), sanitization, aur rate limiting ka use karein.
+
+**English:** To secure a Node.js app, use HTTPS, Helmet (headers), sanitization, and rate limiting.
+
+**Answer:**
+Security is critical. Here are key practices:
+
+1.  **Use HTTPS**: Encrypt data in transit.
+2.  **Sanitize Input**: Prevent SQL/NoSQL injection.
+3.  **Set HTTP Headers**: Use `helmet` middleware.
+4.  **Rate Limiting**: Prevent DDoS attacks.
+5.  **Validate Input**: Use `joi` or `express-validator`.
+6.  **Hide Error Details**: Don't send stack traces to clients in production.
+
+**Example (Helmet):**
+```javascript
+const helmet = require('helmet');
+app.use(helmet());
+```
+
+---
+
+## 40. How to prevent NoSQL Injection?
+
+**Hindi:** NoSQL injection se bachne ke liye input ko sanitize karein (jaise `$` sign hatana) `express-mongo-sanitize` ka use karke.
+
+**English:** To prevent NoSQL injection, sanitize input (like removing `$` signs) using `express-mongo-sanitize`.
+
+**Answer:**
+NoSQL injection occurs when attackers send malicious input to manipulate database queries.
+
+**Vulnerable Code:**
+```javascript
+// if req.body.password is { $ne: null }, it matches all documents!
+const user = await User.findOne({ 
+    username: req.body.username, 
+    password: req.body.password 
+});
+```
+
+**Prevention:**
+Use `express-mongo-sanitize` to remove `$` signs from input.
+
+```javascript
+const mongoSanitize = require('express-mongo-sanitize');
+app.use(mongoSanitize());
+```
+
+---
+
+## 41. How to prevent XSS (Cross-Site Scripting)?
+
+**Hindi:** XSS se bachne ke liye user input ko sanitize karein aur HTML output ko escape karein.
+
+**English:** To prevent XSS, sanitize user input and escape HTML output.
+
+**Answer:**
+XSS attacks inject malicious scripts into web pages viewed by other users.
+
+**Prevention:**
+1.  **Escape Output**: Template engines like EJS/Pug do this automatically.
+2.  **Sanitize Input**: Use libraries like `xss-clean`.
+3.  **Content Security Policy (CSP)**: Restrict where scripts can load from.
+
+```javascript
+const xss = require('xss-clean');
+app.use(xss());
+```
+
+---
+
 # Practical Coding Questions
 
-## 36. Build a REST API for a Blog
+## 42. Build a REST API for a Blog
 
 **Answer:**
 ```javascript
@@ -2317,7 +2630,7 @@ app.listen(3000);
 
 ---
 
-## 37. Implement Rate Limiting (Custom)
+## 43. Implement Rate Limiting (Custom)
 
 **Answer:**
 ```javascript
@@ -2366,7 +2679,7 @@ app.use(limiter.middleware());
 
 ---
 
-## 38. Build File Upload with Progress
+## 44. Build File Upload with Progress
 
 **Answer:**
 ```javascript
